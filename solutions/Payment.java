@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Fixed;
+package payment;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -57,14 +57,12 @@ public class Payment {
         }
         return result;
     }
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner sc = new Scanner(System.in);
-        
         Queue<String> data = new LinkedList<>();
         String lastItemAdded;
         int addedDigit, stackDigit, diff = 0;
