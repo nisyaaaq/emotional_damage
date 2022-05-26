@@ -14,12 +14,12 @@ import java.util.Scanner;
  *
  * @author nisyaqanita
  */
-public class Payment {
+public class payment {
     Queue<String> input = new PriorityQueue<>(Collections.reverseOrder());
     static String reboot = "REBOOT";
     static String exit = "EXIT";
     
-    public Payment(Queue q) {
+    public payment(Queue q) {
         for (Object item : q) {
             String str = (String) item;
             String oldEpoch = str.substring(0, str.indexOf(" "));
@@ -87,7 +87,7 @@ public class Payment {
 
         } while (diff == 0);
         
-        Payment info = new Payment(data);
+        payment info = new payment(data);
         System.out.println(info.txnSorted());
     }
     
