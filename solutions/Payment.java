@@ -57,7 +57,7 @@ public class Payment {
             result += (str.substring((str.indexOf(" ") + 1), str.lastIndexOf(" ")) + " ");
             i++;
         }
-        return "OUTPUT: " + result;
+        return result;
     }
     /**
      * @param args the command line arguments
