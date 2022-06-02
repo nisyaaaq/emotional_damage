@@ -4,11 +4,13 @@
  */
 // package payment;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Scanner;
+// import java.util.Collections;
+// import java.util.LinkedList;
+// import java.util.PriorityQueue;
+// import java.util.Queue;
+// import java.util.Scanner;
+
+import java.util.*;
 
 /**
  *
@@ -67,7 +69,7 @@ public class Payment {
         String lastItemAdded;
         int addedDigit, stackDigit, diff = 0;
         
-        do {
+        while (sc.hasNextLine()) {
             String in = sc.nextLine();
             if (in.equalsIgnoreCase(exit)) {
                 break;
@@ -82,8 +84,11 @@ public class Payment {
                 stackDigit = Integer.parseInt(lastItemAdded.substring(9, 10));
                 diff = addedDigit - stackDigit;
             }
+            if (diff == 1) {
+                break;
+            }    
 
-        } while (diff == 0);
+        }
         
         Payment info = new Payment(data);
         System.out.println(info.txnSorted());
