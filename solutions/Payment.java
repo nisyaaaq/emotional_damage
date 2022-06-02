@@ -69,8 +69,20 @@ public class Payment {
         String lastItemAdded;
         int addedDigit, stackDigit, diff = 0;
         
+        String in;
         while (sc.hasNextLine()) {
-            String in = sc.nextLine();
+            in = sc.nextLine();
+            try {
+                in = sc.nextLine();
+                bener = in.split(" ");
+                if (bener.length != 3) {
+                    throw new InputMismatchException();
+                }
+            
+            } catch (InputMismatchException e) {
+                return;
+            }
+
             if (in.equalsIgnoreCase(exit)) {
                 break;
             } 
