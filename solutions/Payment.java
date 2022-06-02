@@ -17,7 +17,7 @@ import java.util.*;
  * @author nisyaqanita
  */
 public class Payment {
-    Queue<String> input = new LinkedList<>();
+    Queue<String> input = new PriorityQueue<>(Collections.reverseOrder());
     static String reboot = "REBOOT";
     static String exit = "EXIT";
     
