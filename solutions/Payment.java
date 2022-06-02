@@ -72,6 +72,7 @@ public class Payment {
         String in;
         while (sc.hasNextLine()) {
             in = sc.nextLine();
+            bener = in.split(" ");
             try {
                 in = sc.nextLine();
                 bener = in.split(" ");
