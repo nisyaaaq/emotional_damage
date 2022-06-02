@@ -57,7 +57,7 @@ public class Payment {
             result += (str.substring((str.indexOf(" ") + 1), str.lastIndexOf(" ")) + " ");
             i++;
         }
-        return result;
+        return "OUTPUT: " + result;
     }
     /**
      * @param args the command line arguments
@@ -71,9 +71,8 @@ public class Payment {
         String [] bener;
         
         String in;
+        System.out.print("INPUT : ");        
         while (sc.hasNextLine()) {
-            in = sc.nextLine();
-            bener = in.split(" ");
             try {
                 in = sc.nextLine();
                 bener = in.split(" ");
@@ -82,7 +81,6 @@ public class Payment {
                 if (bener.length != 3) {
                     throw new InputMismatchException();
                 }
-            
             } catch (InputMismatchException e) {
                 System.out.println("index nya ga 3 beb");
                 return;
@@ -109,8 +107,9 @@ public class Payment {
             }
             if (diff == 1) {
                 break;
-            }    
-
+            }  
+            
+            System.out.print("INPUT : ");
         }
         
         Payment info = new Payment(data);
