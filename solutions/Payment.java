@@ -68,6 +68,7 @@ public class Payment {
         Queue<String> data = new LinkedList<>();
         String lastItemAdded;
         int addedDigit, stackDigit, diff = 0;
+        String [] bener;
         
         String in;
         while (sc.hasNextLine()) {
