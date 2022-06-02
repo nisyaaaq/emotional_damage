@@ -77,11 +77,20 @@ public class Payment {
             try {
                 in = sc.nextLine();
                 bener = in.split(" ");
+                Long.parseLong(bener[0]);
+                bener[0].substring(9, 10);
                 if (bener.length != 3) {
                     throw new InputMismatchException();
                 }
             
             } catch (InputMismatchException e) {
+                System.out.println("index nya ga 3 beb");
+                return;
+            } catch (NumberFormatException e) {
+                System.out.println("gabisa di parse beb");
+                return;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("out of bound beb");
                 return;
             }
 
