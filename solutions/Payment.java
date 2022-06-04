@@ -74,7 +74,7 @@ public class Payment implements Comparable<Payment> {
     }
     
     public static String toStr(PriorityQueue<Payment> q) {
-        String result = "OUTPUT: ";
+        String result = "";
         int i = 0;
         while(!q.isEmpty() && i < 100){
             if  (i == 100) {
@@ -113,7 +113,7 @@ public class Payment implements Comparable<Payment> {
 
                 if (in.equalsIgnoreCase(exit)) {
                     //print txnId
-//                     System.out.println(toStr(meowsQ));
+                    System.out.println(toStr(meowsQ));
                     break;
                 } else if (in.equalsIgnoreCase(reboot)) {
                     meowsQ.clear();
