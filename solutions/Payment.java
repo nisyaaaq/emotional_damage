@@ -102,6 +102,7 @@ public class Payment implements Comparable<Payment> {
         Scanner sc = new Scanner(System.in);
         
         while (sc.hasNextLine()) {
+            try {
             String in = sc.nextLine();
             in.trim();
             
@@ -116,6 +117,10 @@ public class Payment implements Comparable<Payment> {
             }
             else {
                 String [] inArr = in.split(" ");
+                
+                if (inArr.length != 3) {
+                    throw new InputMismatchException();
+                }
                 
                 epoch = Long.valueOf(inArr[0]);
                 txnId = inArr[1];
@@ -154,7 +159,10 @@ public class Payment implements Comparable<Payment> {
                     break;
                 }
             }
-        }
+        } catch (NumberFormatException e) {
+            return;
+        }        
+        }    
 //        System.out.println(meowsQ.size());        
   
     }
