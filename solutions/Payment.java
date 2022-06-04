@@ -156,7 +156,7 @@ public class Payment implements Comparable<Payment> {
                     if (diff == 1) {
                         //print txnId
                         System.out.println(toStr(meowsQ));
-                        break;
+//                         break;
                     }
                 }
             } catch (NumberFormatException e) {
