@@ -100,7 +100,7 @@ public class Payment implements Comparable<Payment> {
         Long epoch;
         String txnId;
         String tier;
-        int diff = 0;
+        int diff = 0, count = 0;
         
         PriorityQueue<Payment> meowsQ = new PriorityQueue<>(/*Collections.reverseOrder()*/);
         Scanner sc = new Scanner(System.in);
@@ -113,7 +113,7 @@ public class Payment implements Comparable<Payment> {
 
                 if (in.equalsIgnoreCase(exit)) {
                     //print txnId
-                    System.out.println(toStr(meowsQ));
+//                     System.out.println(toStr(meowsQ));
                     break;
                 } else if (in.equalsIgnoreCase(reboot)) {
                     meowsQ.clear();
@@ -157,12 +157,14 @@ public class Payment implements Comparable<Payment> {
                     }
                     meowsQ.add(new Payment(epoch, txnId, tier));
 
-                    if (diff == 1) {
+                    if (diff == 1 || count == 100) {
                         //print txnId
                         System.out.println(toStr(meowsQ));
+                        count = -1;
 //                         break;
                     }
                 }
+                count++;
             } catch (NumberFormatException e) {
                 return;
             } catch (InputMismatchException e) {
