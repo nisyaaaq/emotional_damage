@@ -114,7 +114,7 @@ public class Payment implements Comparable<Payment> {
                 } else if (in.equalsIgnoreCase(reboot)) {
                     meowsQ.clear();
 //                     System.out.println("system crashed, all data in queue are discarded");
-                    break;
+//                     break;
                 } else {
                     String[] inArr = in.split(" ");
 
