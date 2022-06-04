@@ -75,10 +75,10 @@ public class Payment implements Comparable<Payment> {
     
     public static String toStr(PriorityQueue<Payment> q) {
         String result = "";
-        int i = 0;
-        while(!q.isEmpty() && i < 100){
+//         int i = 0;
+        while(!q.isEmpty()/* && i < 100*/){
             result += q.poll() + " ";
-            i++;
+//             i++;
         }
         return result;
     }
@@ -109,11 +109,12 @@ public class Payment implements Comparable<Payment> {
 
                 if (in.equalsIgnoreCase(exit)) {
                     //print txnId
-                    System.out.println(toStr(meowsQ));
+//                     System.out.println(toStr(meowsQ));
                     break;
                 } else if (in.equalsIgnoreCase(reboot)) {
                     meowsQ.clear();
-                    System.out.println("system crashed, all data in queue are discarded");
+//                     System.out.println("system crashed, all data in queue are discarded");
+                    break;
                 } else {
                     String[] inArr = in.split(" ");
 
