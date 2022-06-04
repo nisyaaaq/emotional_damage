@@ -75,10 +75,10 @@ public class Payment implements Comparable<Payment> {
     
     public static String toStr(PriorityQueue<Payment> q) {
         String result = "";
-//         int i = 0;
-        while(!q.isEmpty()/* && i < 100*/){
+        int i = 0;
+        while(!q.isEmpty() && i < 100){
             result += q.poll() + " ";
-//             i++;
+            i++;
         }
         return result;
     }
