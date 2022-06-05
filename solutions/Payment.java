@@ -22,20 +22,23 @@ public class Payment implements Comparable<Payment> {
     final static String PLATINUM = "PLATINUM";
     final static String GOLD = "GOLD";
     final static String SILVER = "SILVER";
+    final static String BRONZE = "BRONZE";
     
     public Payment(Long epoch, String txnId, String tier) {
-        
-//        decrease epoch time regarding the tier
         if (tier.equalsIgnoreCase(PLATINUM)) {
             epoch -= 3000;
-                
         }
         else if (tier.equalsIgnoreCase(GOLD)) {
-             epoch -= 2000;
-                
+            epoch -= 2000;
         }
         else if (tier.equalsIgnoreCase(SILVER)) {
             epoch -= 1000;
+        } 
+        else if (tier.equalsIgnoreCase(BRONZE)) {
+            epoch -= 0;
+        } 
+        else {
+            throw new InputMismatchException();
         }
         
         this.epoch = epoch;
@@ -79,9 +82,7 @@ public class Payment implements Comparable<Payment> {
             result += q.poll() + " ";
             i++; //**
         }
-//        System.out.println("queue's current length: " + q.size());
-        result.trim();
-        return result;
+        return result.trim();
     }
     
     @Override
@@ -98,49 +99,34 @@ public class Payment implements Comparable<Payment> {
         Long lastAddedEpoch = 0L;
         String txnId;
         String tier;
+        String [] inArr = new String[3]; // added just now
         int diff = 0;
         
         PriorityQueue<Payment> meowsQ = new PriorityQueue<>(/*Collections.reverseOrder()*/);
         Scanner sc = new Scanner(System.in);
         
         while (sc.hasNextLine()) {
+            
             try {
                 String in = sc.nextLine();
                 in.trim();
+
                 if (in.equalsIgnoreCase(exit)) {
-                    //print txnId
-//                    System.out.println(toStr(meowsQ)); // **
                     break;
                 } else if (in.equalsIgnoreCase(reboot)) {
                     meowsQ.clear(); 
-//                    break; // ** it got commented
                 } else {
-                    String[] inArr = in.split(" ");
+                    inArr = in.split(" ");
 
-                    if (inArr.length != 3 || inArr.length != 1) {
-                        throw new InputMismatchException();
-                    }
                     epoch = Long.valueOf(inArr[0]);
                     txnId = inArr[1];
                     tier = inArr[2];
+
                     // decide if a second has elapsed
                     if (!meowsQ.isEmpty()) {
-                        // peek to last epoch added to the queue
-//                        Long lastTransaction = meowsQ.peek().getEpoch();
-//                        String tierChecker = meowsQ.peek().getTier();
-
-//                        if (tierChecker.equalsIgnoreCase(PLATINUM)) {
-//                            lastAddedEpoch += 3000;
-//                        } else if (tierChecker.equalsIgnoreCase(GOLD)) {
-//                            lastAddedEpoch += 2000;
-//                        } else if (tierChecker.equalsIgnoreCase(SILVER)) {
-//                            lastAddedEpoch += 1000;
-//                        }
-
                         lastAddedEpoch /= 1000;
                         int secondDigitLast = (lastAddedEpoch.intValue()) % 10;
 
-                        // take the digit seconds from just added transaction
                         Long epochTemp = epoch;
                         epochTemp /= 1000;
                         int secondDigitJust = (epochTemp.intValue()) % 10;
@@ -152,16 +138,15 @@ public class Payment implements Comparable<Payment> {
                     }
                     meowsQ.add(new Payment(epoch, txnId, tier));
                     if (diff == 1) { 
-                        //print txnId
                         System.out.println(toStr(meowsQ));
-//                        System.out.println();
-                        diff = 0; // just added this line
-//                        break; // got commented
+                        diff = 0;
                     }
                 }
-            } /*catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 return;
-            }*/ catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
+                return;
+            } catch (ArrayIndexOutOfBoundsException e) {
                 return;
             }
         }          
