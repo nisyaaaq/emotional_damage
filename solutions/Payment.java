@@ -80,6 +80,7 @@ public class Payment implements Comparable<Payment> {
             i++; //**
         }
 //        System.out.println("queue's current length: " + q.size());
+        result.trim();
         return result;
     }
     
@@ -103,11 +104,9 @@ public class Payment implements Comparable<Payment> {
         Scanner sc = new Scanner(System.in);
         
         while (sc.hasNextLine()) {
-            
             try {
                 String in = sc.nextLine();
                 in.trim();
-
                 if (in.equalsIgnoreCase(exit)) {
                     //print txnId
 //                    System.out.println(toStr(meowsQ)); // **
@@ -118,14 +117,12 @@ public class Payment implements Comparable<Payment> {
                 } else {
                     String[] inArr = in.split(" ");
 
-                    if (inArr.length != 3) {
+                    if (inArr.length != 3 || inArr.length != 1) {
                         throw new InputMismatchException();
                     }
-
                     epoch = Long.valueOf(inArr[0]);
                     txnId = inArr[1];
                     tier = inArr[2];
-
                     // decide if a second has elapsed
                     if (!meowsQ.isEmpty()) {
                         // peek to last epoch added to the queue
@@ -162,9 +159,9 @@ public class Payment implements Comparable<Payment> {
 //                        break; // got commented
                     }
                 }
-            } catch (NumberFormatException e) {
+            } /*catch (NumberFormatException e) {
                 return;
-            } catch (InputMismatchException e) {
+            }*/ catch (InputMismatchException e) {
                 return;
             }
         }          
