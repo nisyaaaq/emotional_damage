@@ -113,7 +113,7 @@ public class Payment implements Comparable<Payment> {
             
             try {
                 String in = sc.nextLine();
-                in.trim();
+//                 in.trim();
 
                 if (in.equalsIgnoreCase(exit)) {
                     //print txnId
@@ -128,10 +128,13 @@ public class Payment implements Comparable<Payment> {
 //                    if (inArr.length != 3 || inArr.length != 1) {
 //                        throw new InputMismatchException();
 //                    }
-                    int length = inArr[0].length();
-                    if (length != 13) {
+                    int lengthEpoch = inArr[0].length(); // added this
+                    int lengthId = inArr[1].length(); // added this
+                    
+                    if (lengthEpoch != 13 || lengthId != 32) { // added this if block
                         throw new InputMismatchException();
                     }
+                    
                     epoch = Long.valueOf(inArr[0]);
                     txnId = inArr[1];
                     tier = inArr[2];
