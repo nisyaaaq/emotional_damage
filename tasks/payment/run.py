@@ -16,10 +16,10 @@ for case in sorted(test_cases):
             else:
                 ans = set(f.readline().strip().split())
                 user_ans = set(input().strip().split())
-
+                
                 if ans != user_ans:
-                    print(len(ans))
-                    print(len(user_ans))
-                    raise ValueError("Wrong answer")
+                    if len(user_ans) != len(ans):
+                        raise ValueError(f"Wrong answer. Too many entries. Expected {len(ans)} entries but got {len(user_ans)}")
+                    raise ValueError(f"Wrong Answer. Entries missing from answer: {ans - user_ans}. Entries not in answer: {user_ans - ans}")
 
 print("EXIT", flush=True)
