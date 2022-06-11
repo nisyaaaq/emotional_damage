@@ -85,8 +85,7 @@ public class Payment implements Comparable<Payment> {
             result += q.poll() + " ";
             i++; //**
         }
-//        System.out.println("queue's current length: " + q.size());
-        return result.trim(); // added .trim() method
+        return result.trim();
     }
     
     @Override
@@ -103,31 +102,22 @@ public class Payment implements Comparable<Payment> {
         Long lastAddedEpoch = 0L;
         String txnId;
         String tier;
-//        String [] inArr = new String[3]; // added just now
         int diff = 0;
         
-        PriorityQueue<Payment> meowsQ = new PriorityQueue<>(/*Collections.reverseOrder()*/);
+        PriorityQueue<Payment> meowsQ = new PriorityQueue<>();
         Scanner sc = new Scanner(System.in);
         
         while (sc.hasNextLine()) {
             
             try {
                 String in = sc.nextLine();
-//                 in.trim();
 
                 if (in.equalsIgnoreCase(exit)) {
-                    //print txnId
-//                    System.out.println(toStr(meowsQ)); // **
                     break;
                 } else if (in.equalsIgnoreCase(reboot)) {
                     meowsQ.clear(); 
-//                    break; // ** it got commented
                 } else {
                     String [] inArr = in.split(" ", 3); // deleted 'String[]' just now
-                        // i commented this exception
-//                    if (inArr.length != 3 || inArr.length != 1) {
-//                        throw new InputMismatchException();
-//                    }
                     int lengthEpoch = inArr[0].length(); // added this
                     int lengthId = inArr[1].length(); // added this
                     
@@ -141,18 +131,6 @@ public class Payment implements Comparable<Payment> {
 
                     // decide if a second has elapsed
                     if (!meowsQ.isEmpty()) {
-                        // peek to last epoch added to the queue
-//                        Long lastTransaction = meowsQ.peek().getEpoch();
-//                        String tierChecker = meowsQ.peek().getTier();
-
-//                        if (tierChecker.equalsIgnoreCase(PLATINUM)) {
-//                            lastAddedEpoch += 3000;
-//                        } else if (tierChecker.equalsIgnoreCase(GOLD)) {
-//                            lastAddedEpoch += 2000;
-//                        } else if (tierChecker.equalsIgnoreCase(SILVER)) {
-//                            lastAddedEpoch += 1000;
-//                        }
-
                         lastAddedEpoch /= 1000;
                         int secondDigitLast = (lastAddedEpoch.intValue()) % 10;
 
@@ -166,23 +144,19 @@ public class Payment implements Comparable<Payment> {
                     } else {
                         lastAddedEpoch = epoch;
                     }
-                    meowsQ.add(new Payment(epoch, txnId, tier));
+                    PayMentCek data = new PayMentCek(epoch, txnId, tier); 
+                    meowsQ.add(data);
                     if (diff == 1) { 
-                        //print txnId
-                        System.out.println(toStr(meowsQ));
-//                        System.out.println();
-                        diff = 0; // just added this line
-//                        break; // got commented
+                        String ans = toStr(meowsQ);
+                        System.out.println(ans);
+                        diff = 0;
                     }
                 }
             } catch (NumberFormatException e) {
-//                System.out.println("num form exp");
                 return;
             } catch (InputMismatchException e) {
-//                System.out.println("in mis exp");
                 return;
             } catch (ArrayIndexOutOfBoundsException e) {
-//                System.out.println("arr ind out of bnd");
                 return;
             }
         }          
