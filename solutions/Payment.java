@@ -160,7 +160,8 @@ public class Payment implements Comparable<Payment> {
                 System.out.println(ans);
                 diff = 0;
             }
-        }          
+        }
+        sc.close();
   
     }
 
