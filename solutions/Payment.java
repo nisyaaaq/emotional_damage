@@ -146,11 +146,6 @@ public class Payment implements Comparable<Payment> {
                     }
                     Payment data = new Payment(epoch, txnId, tier); 
                     meowsQ.add(data);
-                    if (diff == 1) { 
-                        String ans = toStr(meowsQ);
-                        System.out.println(ans);
-                        diff = 0;
-                    }
                 }
             } catch (NumberFormatException e) {
                 return;
@@ -158,6 +153,12 @@ public class Payment implements Comparable<Payment> {
                 return;
             } catch (ArrayIndexOutOfBoundsException e) {
                 return;
+            }
+            
+            if (diff == 1) { 
+                String ans = toStr(meowsQ);
+                System.out.println(ans);
+                diff = 0;
             }
         }          
   
