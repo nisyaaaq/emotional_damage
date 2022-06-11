@@ -147,7 +147,7 @@ public class Payment implements Comparable<Payment> {
                     Payment data = new Payment(epoch, txnId, tier); 
                     meowsQ.add(data);
                     if (diff == 1) { 
-                        String ans = toStr(meowssQ);
+                        String ans = toStr(meowsQ);
                         System.out.println(ans);
                         diff = 0;
                     }
