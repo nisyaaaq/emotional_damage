@@ -144,10 +144,10 @@ public class Payment implements Comparable<Payment> {
                     } else {
                         lastAddedEpoch = epoch;
                     }
-                    PayMentCek data = new PayMentCek(epoch, txnId, tier); 
+                    Payment data = new Payment(epoch, txnId, tier); 
                     meowsQ.add(data);
                     if (diff == 1) { 
-                        String ans = toStr(meowsQ);
+                        String ans = toStr(meowssQ);
                         System.out.println(ans);
                         diff = 0;
                     }
