@@ -1,4 +1,4 @@
-
+package Navigation;
 
 import java.io.BufferedInputStream;
 import java.util.ArrayList;
