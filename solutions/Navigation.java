@@ -102,11 +102,11 @@ public class Navigation {
             System.out.println("This path doesnt start at the starting station!");
         }
         
-        else if (!destination.contains(user_path[1])) { //If there is no destination print 
+        if (!destination.contains(user_path[1])) { //If there is no destination print 
             System.out.println("This path doesnt end at the destination!");
         }
         
-        else if (!destination.contains(user_path[0]) && !destination.contains(user_path[1])){
+        if (!destination.contains(user_path[0]) && !destination.contains(user_path[1])){
             System.out.println("There is no train from "+ user_path[0] + " to " + user_path[1]);
         }
     }
