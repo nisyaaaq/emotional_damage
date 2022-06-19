@@ -8,8 +8,7 @@ import java.lang.*;
 public class Histogram {
     public static void main(String[] args) {
         try {
-            File file = new File("0.txt");
-            Scanner input = new Scanner(file);
+            Scanner input = new Scanner(System.in);
             String firstLine = input.nextLine();
             System.out.println(firstLine);
             int numOfBin = Integer.parseInt(firstLine.split(" ")[1]);
@@ -24,7 +23,7 @@ public class Histogram {
             Frequency(N2,numOfBin,newArray);
 
         } catch (Exception e) {
-            System.out.println("Error in input file...");
+            return;
         }
     }
     public static int max(int[] array){
