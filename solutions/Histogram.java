@@ -10,7 +10,7 @@ public class Histogram {
         try {
             Scanner input = new Scanner(System.in);
             String firstLine = input.nextLine();
-            System.out.println(firstLine);
+            //System.out.println(firstLine);
             int numOfBin = Integer.parseInt(firstLine.split(" ")[1]);
             String secondLine = input.nextLine();
             String[] strArr2 = secondLine.split(" ");
