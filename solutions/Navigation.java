@@ -3,13 +3,14 @@ import java.util.*;
 
 public class Navigation {
     public static void main(String[] args) {
-        try {
-            UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
-            Scanner in = new Scanner(new FileInputStream("cases.txt"));
-            while (in.hasNextLine()){
-                String line = in.nextLine();
-                String[] split = line.split(" => ");
-                String[] splitt = line.split(" -> ");
+
+        Scanner sc = new Scanner(System.in);    
+        UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
+        int tracksnum = sc.nextInt(); //scan the number of tracks in the cases.txt
+        System.out.println(tracksnum);
+            for(int i=0; i<tracksnum; tracksnum++){
+                String line = sc.nextLine();
+                String[] split = line.split(" => ");                
 
                 if(split.length > 1) {
                     graph.addVertex(split[0]);
@@ -17,8 +18,14 @@ public class Navigation {
                     graph.addEdge(split[0],  split[1],1);
                     graph.addEdge(split[1], split[0],1);
                 }
+            }
 
-
+        sc.nextLine(); //queries
+        int queries = sc.nextInt(); //Read queries integer from cases.txt
+        System.out.println(queries);
+            for(int i=0; i< queries; i++){
+                String rail = sc.nextLine();
+                String[] splitt = rail.split(" -> ");
                 if(splitt.length>1){
                     System.out.println(splitt[0]+" => "+splitt[1]);
                     System.out.println("Pathway :");
@@ -30,16 +37,6 @@ public class Navigation {
 
             }
 
-
-
-
-
-
-
-
-        }catch (Exception e){
-            System.out.println("File not found");
-        }
     }
 
     public static void BFS(UnweightedGraph x,String source, String destination){
