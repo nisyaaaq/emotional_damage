@@ -17,7 +17,7 @@ for case in sorted(test_cases):
         user_counts: List[int] = list(map(int, input().split()))
         
         if cutoffs != user_cutoffs:
-            raise ValueError(f"Wrong cutoffs \n cutoff: {cutoff} \nuser_cutoff:{user_cutoff}")
+            raise ValueError(f"Wrong cutoffs \n cutoff: {cutoffs} \nuser_cutoff:{user_cutoffs}")
         if counts != user_counts:
             raise ValueError(f"Wrong cutoffs \n cutoff: {counts} \nuser_cutoff:{user_counts}")
 
