@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class histo{
+class Histogram{
 
     public static void main(String[] args){
 
