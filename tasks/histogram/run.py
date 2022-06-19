@@ -1,7 +1,7 @@
 from typing import List
 import os
 
-CASE_DIR = os.path.join(os.path.dirname(_file_), "cases")
+CASE_DIR = os.path.join(os.path.dirname(__file__), "cases")
 
 test_cases = next(os.walk(CASE_DIR))[2]
 print(len(test_cases))
