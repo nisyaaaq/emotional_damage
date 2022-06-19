@@ -1,10 +1,10 @@
 from typing import List
 import os
 
-CASE_DIR = os.path.join(os.path.dirname(__file__), "cases")
+CASE_DIR = os.path.join(os.path.dirname(_file_), "cases")
 
 test_cases = next(os.walk(CASE_DIR))[2]
-# print(len(test_cases))
+print(len(test_cases))
 for case in sorted(test_cases):
     with open(os.path.join(CASE_DIR, case), 'r') as f:
         print(f.readline(), end='')
@@ -17,8 +17,8 @@ for case in sorted(test_cases):
         user_counts: List[int] = list(map(int, input().split()))
         
         if cutoffs != user_cutoffs:
-            raise ValueError(f"Wrong cutoffs \n cutoff: {cutoffs} \nuser_cutoff:{user_cutoffs}")
+            raise ValueError("Wrong cutoffs")
         if counts != user_counts:
-            raise ValueError(f"Wrong cutoffs \n cutoff: {counts} \nuser_cutoff:{user_counts}")
+            raise ValueError("Wrong counts")
 
 print("EXIT", flush=True)
