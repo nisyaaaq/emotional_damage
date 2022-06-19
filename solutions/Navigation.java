@@ -7,7 +7,7 @@ public class Navigation {
         UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
         int tracksnum = sc.nextInt(); //scan the number of tracks in the cases.txt
         System.out.println(tracksnum);
-            for(int i=0; i<tracksnum; tracksnum++){
+            for(int i=0; i<tracksnum; i++){
                 String line = sc.nextLine();
                 String[] split = line.split(" => ");                
 
