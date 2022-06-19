@@ -19,6 +19,7 @@ public class Navigation {
                 }
             }
 
+        if(sc.nextLine().equalsIgnoreCase("QUERIES")){
         sc.nextLine(); //queries
         int queries = sc.nextInt(); //Read queries integer from cases.txt
         System.out.println(queries);
@@ -32,7 +33,7 @@ public class Navigation {
                     System.out.println("\n");
 
                 }
-
+            }
 
             }
 
