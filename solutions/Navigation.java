@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Navigation {
     public static void main(String[] args) {
-        String file = "C:\\Users\\Nazif Aqif\\Desktop\\DS-Assignment-2022-main\\tasks\\navigation\\cases\\0.txt";
+        String file = "cases.txt";
         
         try {
             UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
