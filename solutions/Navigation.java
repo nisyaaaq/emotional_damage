@@ -42,7 +42,7 @@ public class Navigation {
             }
         
 
-        }catch (java.util.InputMismatchException e){
+        }catch (Exception e){
             System.out.println("File not found");
         }
     }
