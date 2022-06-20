@@ -4,9 +4,11 @@ public class Navigation {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);    
+        int num= Integer.parseInt(sc.nextLine());
+        for(int k=0;k<num;k++){
         UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
         int tracksnum = sc.nextInt(); //scan the number of tracks in the cases.txt
-        System.out.println(tracksnum);
+        //System.out.println(tracksnum);
             for(int i=0; i<tracksnum; i++){
                 String line = sc.nextLine();
                 String[] split = line.split(" => ");                
@@ -22,20 +24,21 @@ public class Navigation {
         if(sc.nextLine().equalsIgnoreCase("QUERIES")){
         sc.nextLine(); //queries
         int queries = sc.nextInt(); //Read queries integer from cases.txt
-        System.out.println(queries);
+        //System.out.println(queries);
             for(int i=0; i< queries; i++){
                 String rail = sc.nextLine();
                 String[] splitt = rail.split(" -> ");
                 if(splitt.length>1){
                     System.out.println(splitt[0]+" => "+splitt[1]);
-                    System.out.println("Pathway :");
+                    //System.out.println("Pathway :");
                     DFS(graph,splitt[0],splitt[1]);
-                    System.out.println("\n");
+                    System.out.println("");
 
                 }
             }
 
             }
+        }
 
     }
 
