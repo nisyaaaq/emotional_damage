@@ -8,11 +8,12 @@ import java.util.Scanner;
 
 public class Navigation {
     public static void main(String[] args) {
-        String file = "cases.txt";
+       // String file = "cases.txt";
         
         try {
             UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
-            Scanner sc = new Scanner(new FileInputStream(file));
+            //Scanner sc = new Scanner(new FileInputStream(file));
+            Scanner sc = new Scanner(System.in);
             String num = sc.nextLine();
             int num_rails = Integer.parseInt(num);
             System.out.println(num_rails);
