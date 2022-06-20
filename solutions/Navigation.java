@@ -10,7 +10,7 @@ public class Navigation {
     public static void main(String[] args) {
        // String file = "cases.txt";
         
-        //try {
+        try {
             UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
             //Scanner sc = new Scanner(new FileInputStream(file));
             Scanner sc = new Scanner(System.in);
@@ -42,9 +42,9 @@ public class Navigation {
             }
         
 
-        /*}catch (Exception e){
+        }catch (Exception e){
             System.out.println("File not found");
-        }*/
+        }
     }
 
     public static void BFS(UnweightedGraph x,String source, String destination){
