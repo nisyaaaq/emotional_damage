@@ -1,123 +1,162 @@
-package test;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 
-import java.io.FileInputStream;
 import java.util.*;
 
-public class Navigation {
-    public static void main(String[] args) {
-        String file = "C:\\Users\\Nazif Aqif\\Desktop\\DS-Assignment-2022-main\\tasks\\navigation\\cases\\0.txt";
+/**
+ *
+ * @author nisyaqanita
+ */
+public class Payment implements Comparable<Payment>{
+    
+    // variable block
+    private Long oldEpoch;
+    private Long newEpoch;
+    private Long newEpochHolder;
+    private String txnId;
+    private String tier;
+    
+    final String PLATINUM = "PLATINUM";
+    final String GOLD = "GOLD";
+    final String SILVER = "SILVER";
+    
+    static PriorityQueue<Payment> meowsPQ = new PriorityQueue<>();
+    private static Stack<Long> stack = new Stack<>();
+    // end of variale block
+    
+    public Payment(Long oldEpoch, String txnId, String tier) {
+        if (tier.equalsIgnoreCase(PLATINUM)) {
+            this.newEpoch = oldEpoch - 3000;
+        }
+        else if (tier.equalsIgnoreCase(GOLD)) {
+            this.newEpoch = oldEpoch - 2000;
+        }
+        else if (tier.equalsIgnoreCase(SILVER)) {
+            this.newEpoch = oldEpoch - 1000;
+        } 
+        else {
+            this.newEpoch = oldEpoch - 0;
+        }
         
-        try {
-            UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
-            Scanner sc = new Scanner(new FileInputStream(file));
-            while (sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] split = line.split(" => ");
-                String[] splitt = line.split(" -> ");
-
-                if(split.length > 1) {
-                    graph.addVertex(split[0]);
-                    graph.addVertex(split[1]);
-                    graph.addEdge(split[0],  split[1],1);
-                    graph.addEdge(split[1], split[0],1);
-                }
-
-                if(splitt.length>1){
-                    System.out.println(splitt[0]+" => "+splitt[1]);
-                    System.out.println("Pathway :");
-                    DFS(graph,splitt[0],splitt[1]);
-                    System.out.println("\n");
-
-                }
-
-            }
-
-
-        }catch (Exception e){
-            System.out.println("File not found");
-        }
-    }
-
-    public static void BFS(UnweightedGraph x,String source, String destination){
-
-
-        String temp = "";
-        String p = "";
-        ArrayList<String> prev = new ArrayList<>();
-        String path;
-        int s = x.getSize();
-        boolean visited[] = new boolean[s];
-        LinkedList<String> que = new LinkedList<>();
-        visited[x.getIndex(source)] = true;
-        que.add(source);
-
-
-        while (que.size() != 0){
-
-
-
-            path = que.poll();
-
-
-            if(path.equals(destination)){
-                System.out.print(destination);
-                break;
-            }else{
-                for(String y : prev){
-                    if((!y.equals(temp)) )
-                    System.out.print(temp+" => "+y+" => ");
-                }
-                System.out.print(temp+" -> ");
-                prev.clear();
-            }
-
-            temp = path;
-
-                    //System.out.print(path + " -> ");
-
-            for(int i =0;i < x.getNeighbours(path).size();i++){
-
-                p = (String) x.getNeighbours(path).get(i);
-
-                prev.add(p);
-                if(!visited[x.getIndex(p)]){
-                    visited[x.getIndex(p)] = true;
-                    que.add(p);
-                }
-            }
-
-
-        }
-
-    }
-
-    public static int DFS(UnweightedGraph x,String source,String destination){
-        boolean visited[] = new boolean[x.getSize()];
-        if(DFSUtil(x,source,destination,visited)==1)
-        return 1;
-
-        return 0;
-    }
-
-    public static int DFSUtil(UnweightedGraph x,String source,String destination,boolean visited[]){
-        visited[x.getIndex(source)] = true;
-        System.out.print(source+" -> ");
-        for(int i =0;i < x.getNeighbours(source).size();i++){
-
-            String p = (String) x.getNeighbours(source).get(i);
-            if(p.equals(destination)){
-                System.out.print(destination);
-                return 1;
-            }
-
-            if(!visited[x.getIndex(p)]){
-                if(DFSUtil(x,p,destination,visited)==1){
-                    return 1;
-                }else continue;
-
+        newEpochHolder = this.newEpoch;
+        
+        if (!stack.isEmpty()) {
+            if (stack.contains(newEpochHolder)) {
+                newEpochHolder += 1L;
             }
         }
+        if (stack.size() == 1800) {
+            stack.clear();
+        }
+        
+        this.newEpoch = newEpochHolder;
+        stack.push(this.newEpoch);
 
-        return 0;
+        this.oldEpoch = oldEpoch;
+        this.txnId = txnId;
+        this.tier = tier;
     }
+
+    public Long getOldEpoch() {return oldEpoch;}
+    
+    public Long getNewEpoch() {return newEpoch;}
+
+    public String getTxnId() {return txnId;}
+
+    public String getTier() {return tier;}
+    
+    @Override 
+    public int compareTo(Payment otherTransaction) {
+        return this.getNewEpoch().compareTo(otherTransaction.newEpoch);
+    }
+    
+    @Override
+    public String toString() {
+        return this.getTxnId();
+    }
+    
+    public static String toStr(PriorityQueue<Payment> q) {
+        if (stack.size() == 150) {
+
+        }
+        String result = "";
+        int i = 0;
+        while(!q.isEmpty() && i < 100){
+            result += q.poll() + " ";
+            i++;
+        }
+        return result.trim();
+    }
+    
+    public static void main(String[] args) {
+        // variables block
+        final String EXIT = "EXIT";
+        final String REBOOT = "REBOOT";
+        
+        Long epoch;
+        String txnId, tier;
+        
+        int diff = 0;
+        Long lastAddedEpoch = 0L;
+        boolean pass = false;
+        // end of variale block
+                
+        Scanner sc = new Scanner(System.in);
+        
+        while (sc.hasNextLine()) {
+            try {
+                String in = sc.nextLine();
+                in = in.trim();
+                
+                if (in.equalsIgnoreCase(EXIT)) {
+                    break;
+                } else if (in.equalsIgnoreCase(REBOOT)) {
+                    meowsPQ.clear();
+                } else {
+                    String [] transaction = in.split("\\s+", 3);
+                    epoch = Long.valueOf(transaction[0]);
+                    txnId = transaction[1];
+                    tier = transaction[2];
+                    
+                    if (!meowsPQ.isEmpty()) {
+                        lastAddedEpoch /= 1000;
+                        
+                        Long epochTemp = epoch;
+                        epochTemp /= 1000;
+                        
+                        diff = epochTemp.intValue() - lastAddedEpoch.intValue();
+                        lastAddedEpoch = epoch;
+                        
+                    } else {
+                        lastAddedEpoch = epoch;
+                    }
+                    
+                    Payment transactionObj = new Payment(epoch, txnId, tier);
+                    meowsPQ.add(transactionObj);
+                    
+                    Long round = lastAddedEpoch % 1000;
+                    if (diff == 1 || pass) { 
+                        if (round.intValue() != 0) {
+                            String ans = toStr(meowsPQ);
+                            System.out.println(ans);
+                            diff = 0;
+                            pass = false;
+                        } else {
+                            pass = true;
+                        }
+                    }  
+                } 
+                
+            } catch (InputMismatchException e) {
+                return;
+            } catch (NumberFormatException e) {
+                return;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return;
+            }
+        }
+        
+    } 
 }
