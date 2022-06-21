@@ -12,8 +12,8 @@ public class Navigation {
         
         try {
             UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
-            Scanner sc = new Scanner(new FileInputStream(file));
-            //Scanner sc = new Scanner(System.in);
+        
+            Scanner sc = new Scanner(System.in);
             String num = sc.nextLine();
             int num_rails = Integer.parseInt(num);
             System.out.println(num_rails);
