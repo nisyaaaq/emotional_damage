@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.*;
 import java.lang.*;
 /**
@@ -9,19 +7,22 @@ public class Histogram {
     public static void main(String[] args) {
         try {
             Scanner input = new Scanner(System.in);
-            String firstLine = input.nextLine();
-            System.out.println(firstLine);
-            int numOfBin = Integer.parseInt(firstLine.split(" ")[1]);
-            String secondLine = input.nextLine();
-            String[] strArr2 = secondLine.split(" ");
-            int[] N2 = new int[strArr2.length];
-            for (int i = 0; i < N2.length; i++) {
-                N2[i] = Integer.parseInt(strArr2[i]);
+            int NumCases = input.nextInt();
+            input.nextLine();
+            for(int i=0;i<NumCases;i++){
+                String firstLine = input.nextLine();
+                int numOfBin = Integer.parseInt(firstLine.split(" ")[1]);
+                String secondLine = input.nextLine();
+                String[] strArr2 = secondLine.split(" ");
+                int[] N2 = new int[strArr2.length];
+                for (int j = 0; j < N2.length; j++) {
+                   N2[j] = Integer.parseInt(strArr2[j]);
+                }
+                int[] newArray = new int[numOfBin + 1];;
+                int cutoff = intervals(N2, numOfBin, newArray);
+                Frequency(N2,numOfBin,newArray);
             }
-            int[] newArray = new int[numOfBin + 1];;
-            int cutoff = intervals(N2, numOfBin, newArray);
-            Frequency(N2,numOfBin,newArray);
-
+            
         } catch (Exception e) {
             return;
         }
