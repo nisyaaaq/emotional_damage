@@ -6,12 +6,11 @@ public class Navigation {
 
         Scanner sc = new Scanner(System.in);
 
-        //int num_cases = Integer.parseInt(sc.nextLine());
-        int num_cases = sc.nextInt();
+        int num_cases = Integer.parseInt(sc.nextLine());
         // Run for the number of test cases required
         for (int caseNo = 0; caseNo < num_cases; caseNo++) {
             //Scan size of location data
-            int number1 = sc.nextInt();
+            int number1 = Integer.parseInt(sc.nextLine());
 
             //Declaration for a place to store data
             String test, Answer = "";
@@ -28,7 +27,7 @@ public class Navigation {
                 adj.add(new ArrayList<>());
             }
 
-            //sc.nextLine();
+//             sc.nextLine();
             //Data for location and line
             for (int i = 1; i <= number1; i++) {
 
