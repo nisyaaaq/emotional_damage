@@ -6,9 +6,9 @@ public class Navigation {
 
         Scanner sc = new Scanner(System.in);
 
-//        int num_cases = Integer.parseInt(sc.nextLine());
+        int num_cases = Integer.parseInt(sc.nextLine());
         // Run for the number of test cases required
-//        for (int caseNo = 0; caseNo < num_cases; caseNo++) {
+        for (int caseNo = 0; caseNo < num_cases; caseNo++) {
             //Scan size of location data
             int number1 = sc.nextInt();
 
@@ -98,7 +98,7 @@ public class Navigation {
                     Answer = "";
                 }
             }
-//        }
+        }
     }
     
     
