@@ -45,7 +45,7 @@ public class Navigation {
                     addEdge(adj, s, d);
                 }
             }
-            sc.nextLine();
+//             sc.nextLine();
             int number2 = sc.nextInt();
 
             int s, d;
