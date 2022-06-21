@@ -11,11 +11,9 @@ public class Navigation {
         
         try {
             UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
-        
-            Scanner sc = new Scanner(System.in);
+            Scanner sc = new Scanner(new FileInputStream(file));
             String num = sc.nextLine();
             int num_rails = Integer.parseInt(num);
-            System.out.println(num_rails);
             
             for(int i=0; i<num_rails; i++){
                 String line = sc.nextLine();
@@ -30,51 +28,20 @@ public class Navigation {
             sc.nextLine(); //queries
             String num1 = sc.nextLine();
             int queries = Integer.parseInt(num1);
-            ArrayList<String> src = new ArrayList<>();
-            ArrayList<String> dst = new ArrayList<>();
-            String[] line = new String[queries];
             
             for(int j=0; j<queries; j++){
-                line[j] = sc.nextLine();
-                String[] splitt = line[j].split("->");
-                src.add(splitt[0]);
-                dst.add(splitt[1]);
-            }
-            
-            for(int j=0; j<queries; j++){               
-                /*src.add(splitt[0]);
-                dst.add(splitt[1]);*/
-                String[] splitt = line[j].split("->");
-                
-                if(graph.hasVertex(splitt[0]) && graph.hasVertex(splitt[1])){
-                    System.out.println(splitt[0]+" => "+splitt[1]);
+                String line = sc.nextLine();
+                String[] splitt = line.split("->");
+
                     DFS(graph,splitt[0],splitt[1]);
-                    System.out.println("\n");
-                    
-                }else{ 
-                    if (!graph.hasVertex(splitt[0])) { //If there is no starting point
-                        System.out.println(splitt[0]+" => "+splitt[1]);
-                        System.out.println("This path doesnt start at the starting station!");
-                        System.out.println("\n");
-                    }        
-                    if (!graph.hasVertex(splitt[1])) { //If there is no destination print 
-                        System.out.println(splitt[0]+" => "+splitt[1]);
-                        System.out.println("This path doesnt end at the destination!");
-                        System.out.println("\n");
-                    }
-                    if (!graph.hasVertex(splitt[0]) && graph.hasVertex(splitt[1])){
-                        System.out.println(splitt[0]+" => "+splitt[1]);
-                        System.out.println("There is no train from "+ splitt[0] + " to " + splitt[1]);
-                        System.out.println("\n");
-                    }
-                }
+                    System.out.println("");
 
             }
         
-
         }catch (Exception e){
             System.out.println("File not found");
         }
+    }
     }
 
     
