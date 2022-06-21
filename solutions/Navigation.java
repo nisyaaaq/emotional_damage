@@ -49,7 +49,7 @@ public class Navigation {
             int queries = sc.nextInt();
 
             int s, d;
-            LinkedList<Integer> jalan;
+            LinkedList<Integer> route;
 
             sc.nextLine(); //queries
             for (int i = 1; i <= queries; i++) {
@@ -71,18 +71,18 @@ public class Navigation {
                     System.out.println("This path doesnt end at the destination!");
                 }
 
-                jalan = printShortestDistance(adj, s, d, (num_rails + num_rails));
+                route = printShortestDistance(adj, s, d, (num_rails + num_rails));
 
-                if (jalan == null) {
+                if (route == null) {
                     System.out.println("There is no train from " + place[0] + " to " + place[1]);
                     continue;
                 } else {
-                    for (int j = jalan.size() - 1; j >= 0; j--) {
+                    for (int j = route.size() - 1; j >= 0; j--) {
                         if (j == 0) {
-                            Answer += graph.getAllLocationObjects().get(jalan.get(j));
+                            Answer += graph.getAllLocationObjects().get(route.get(j));
                             continue;
                         }
-                        Answer += graph.getAllLocationObjects().get(jalan.get(j)) + "->";
+                        Answer += graph.getAllLocationObjects().get(route.get(j)) + "->";
                     }
                     System.out.println(Answer);
                     Answer = "";
