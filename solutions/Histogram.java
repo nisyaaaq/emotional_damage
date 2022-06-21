@@ -1,80 +1,84 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.*;
-import java.lang.*;
-/**
- *
- */
-public class Histogram {
-    public static void main(String[] args) {
-        try {
-            Scanner input = new Scanner(System.in);
-            String firstLine = input.nextLine();
-            System.out.println(firstLine);
-            int numOfBin = Integer.parseInt(firstLine.split(" ")[1]);
-            String secondLine = input.nextLine();
-            String[] strArr2 = secondLine.split(" ");
-            int[] N2 = new int[strArr2.length];
-            for (int i = 0; i < N2.length; i++) {
-                N2[i] = Integer.parseInt(strArr2[i]);
-            }
-            int[] newArray = new int[numOfBin + 1];;
-            int cutoff = intervals(N2, numOfBin, newArray);
-            Frequency(N2,numOfBin,newArray);
+import java.util.Scanner;
+class Histogram{
 
-        } catch (Exception e) {
-            return;
-        }
-    }
-    public static int max(int[] array){
-            int max = 0;
-            for(int i=0;i< array.length;i++){
-                if(array[i]>max){
-                    max = array[i];
+    public static void main(String[] args){
+
+        Scanner in = new Scanner(System.in);
+        int NumOfCases = in.nextInt();
+//        ArrayList<Integer> ans = new ArrayList<>();
+
+        for(int c=0; c<NumOfCases; c++) {
+            int NumOfData = in.nextInt();
+            int NumOfBins = in.nextInt();
+
+            int[] DataPoints = new int[NumOfData];
+            for (int b = 0; b < NumOfData; b++) {
+                DataPoints[b] = in.nextInt();
+            }
+
+            int max = DataPoints[0];
+            int min = DataPoints[0];
+
+            for (int i = 0; i < DataPoints.length; i++) {
+                if (DataPoints[i] > max) {
+                    max = DataPoints[i];
+                }
+                if (DataPoints[i] < min) {
+                    min = DataPoints[i];
                 }
             }
-            return max;
-        }
-        public static int min(int[] array){
-            int min = array[0];
-            for(int i=0;i< array.length; i++){
-                if(array[i]<min){
-                    min = array[i];
+
+            int CutoffsValue = (max - min) / NumOfBins;
+            int sum = 0;
+            int[] interval = new int[NumOfBins + 1];
+            int[] count = new int[NumOfBins];
+
+            for (int i = 0; i < interval.length; i++) {
+                if (i == 0) {
+                    System.out.print(min + " ");
+                    sum += min;
+                    interval[i] = min;
+//                    ans.add(min);
+                } else {
+                    System.out.print(sum + " ");
+                    interval[i] = sum;
+//                    ans.add(sum);
                 }
+                sum += CutoffsValue;
             }
-            return min;
-        }
-
-        public static int intervals(int[] N2, int numOfBin, int[] newArray){
-
-            int min = min(N2);
-            int max = max(N2);
-            int cutoff = (max - min) / numOfBin;
-            int interval = min;
-            for (int i = 0; i <= numOfBin; i++) {
-                newArray[i] = interval;
-                interval += cutoff;
-
-            }
-            for (int inter: newArray) {
-                System.out.print(inter + " ");
-            }
+//            ans.add(00);
             System.out.println();
-            return cutoff;
-        }
 
-        public static void Frequency(int[] N2, int numOfBin, int[] newArray){
-            int[] frequency = new int[numOfBin];
-            frequency[frequency.length-1] = 1;
-            for (int number: N2) {
-                for (int i = 0; i < newArray.length-1; i++) {
-                    if (number >= newArray[i] && number<newArray[i+1]){
-                        frequency[i]++;
+
+            for (int i = 0; i < DataPoints.length; i++) {
+                for (int j = 0; j < interval.length - 1; j++) {
+                    if (DataPoints[i] >= interval[j] && DataPoints[i] < interval[j + 1]) {
+                        count[j]++;
                     }
                 }
+                if (DataPoints[i] == interval[interval.length - 1]) {
+                    count[interval.length - 2]++;
+                }
             }
-            for (int freq: frequency) {
-                System.out.print(freq + " ");
+//            for (int i = 0; i < count.length; i++){
+//                ans.add(count[i]);
+//            }
+//            ans.add(00);
+
+            for (int i = 0; i < count.length; i++) {
+                System.out.print(count[i] + " ");
             }
+            System.out.println();
         }
+
+//        while(!ans.isEmpty()){
+//            int num = ans.remove(0);
+//            if(num != 0){
+//                System.out.print(num + " ");
+//            }
+//            if(num == 0){
+//                System.out.println();
+//            }
+//        }
     }
+}
