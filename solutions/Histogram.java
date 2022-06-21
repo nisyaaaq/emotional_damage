@@ -3,29 +3,25 @@ import java.lang.*;
 /**
  *
  */
-public class Histogram {
+class Histogram {
     public static void main(String[] args) {
-        try {
-            Scanner input = new Scanner(System.in);
-            int NumCases = input.nextInt();
+        Scanner input = new Scanner(System.in);
+        int NumCases = input.nextInt();
+        input.nextLine();
+        for(int i=0;i<NumCases;i++){
+            int numOfData = input.nextInt(); 
+            int numOfBin = input.nextInt();
             input.nextLine();
-            for(int i=0;i<NumCases;i++){
-                String firstLine = input.nextLine();
-                int numOfBin = Integer.parseInt(firstLine.split(" ")[1]);
-                String secondLine = input.nextLine();
-                String[] strArr2 = secondLine.split(" ");
-                int[] N2 = new int[strArr2.length];
-                for (int j = 0; j < N2.length; j++) {
-                   N2[j] = Integer.parseInt(strArr2[j]);
-                }
-                int[] newArray = new int[numOfBin + 1];;
-                int cutoff = intervals(N2, numOfBin, newArray);
-                Frequency(N2,numOfBin,newArray);
+            int[] strArr2 = new int[numOfData];
+            for(int k=0;k<numOfData;k++){
+                strArr2[k] = input.nextInt();
             }
-            
-        } catch (Exception e) {
-            return;
+            input.nextLine();
+            int[] newArray = new int[numOfBin + 1];;
+            int cutoff = intervals(strArr2, numOfBin, newArray);
+            Frequency(strArr2,numOfBin,newArray);
         }
+            
     }
     public static int max(int[] array){
             int max = 0;
@@ -57,10 +53,11 @@ public class Histogram {
                 interval += cutoff;
 
             }
+            String line = "";
             for (int inter: newArray) {
-                System.out.print(inter + " ");
+                line += inter + " ";
             }
-            System.out.println();
+            System.out.println(line);
             return cutoff;
         }
 
@@ -74,8 +71,11 @@ public class Histogram {
                     }
                 }
             }
+            String line1="";
             for (int freq: frequency) {
-                System.out.print(freq + " ");
+       
+                line1 += freq + " ";
             }
+            System.out.println(line1);
         }
-    }
+}
