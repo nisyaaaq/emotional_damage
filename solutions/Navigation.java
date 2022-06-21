@@ -73,7 +73,7 @@ public class Navigation {
             }
         
 
-        }catch (FileNotFoundException e){
+        }catch (Exception e){
             System.out.println("File not found");
         }
     }
