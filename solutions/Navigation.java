@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Navigation {
     public static void main(String[] args) {
-       // String file = "cases.txt";
         
         try {
             UnweightedGraph<String,Integer> graph = new UnweightedGraph<>();
